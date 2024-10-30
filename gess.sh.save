@@ -1,0 +1,41 @@
+#!/bin/bash
+calculate() {
+  gess=$1
+  rand=$2
+  tens=1000
+  result=""
+  for i in $(seq 1 4); do
+    firstGess=$((($gess/$tens)%10))
+    firstRand=$((($rand/$tens)%10))
+    echo $firstGess
+    echo $firstRand
+    if [[ firstGess == firstRand ]]; then
+      result+="1"
+    else 
+      result+="0"
+    fi
+    tens=$(($tens/10))
+    rand=$(($rand/10))
+
+  done
+  echo $result 
+}
+calculate 1234 1236
+exit 0
+
+continu=true
+while [ continu ]; do
+  echo "enter a gess"
+  read num
+  ran=$((RANDOM % 4 + 1))
+  echo "$ran"
+  if [[ $num == 0 ]]; then
+    exit 0
+  fi
+  if [[ $num == $ran ]]; then
+     echo "good"
+  else 
+    echo "luser"
+  fi
+done
+
